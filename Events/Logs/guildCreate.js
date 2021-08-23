@@ -1,9 +1,10 @@
+const Event = require("../../Structure/Event");
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { token } = require("../config")
+const { token } = require("../../config")
 
-module.exports = async(bot) => {
+module.exports = new Event("guildCreate", async (bot, guild) => {
 
     const commands = [
 
@@ -24,10 +25,5 @@ module.exports = async(bot) => {
       
     const rest = new REST({ version: "9" }).setToken(token)
 
-    bot.guilds.cache.forEach(async guild => {
-        
-        await rest.put(Routes.applicationGuildCommands(bot.user.id, guild.id), { body: commands });
-    })
-
-    console.log("Les slashs commandes ont été créées avec succès !")
-}
+    await rest.put(Routes.applicationGuildCommands(bot.user.id, guild.id), { body: commands });
+})

@@ -6,8 +6,8 @@ const Client = require("./Client");
 
 /**
  * @param {Client} bot
- * @param {Discord.Message | Discord.Interaction} message
- * @param {string[]} args
+ * @param {Discord.Message | Discord.CommandInteraction} message
+ * @param {string[] | Discord.InteractionDeferUpdateOptions} args
  * @param {mysql.Connection} db
 */
 
@@ -31,4 +31,4 @@ class Command {
     }
 }
 
-module.exports = Command
+module.exports = Command;

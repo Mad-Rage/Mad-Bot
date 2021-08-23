@@ -4,7 +4,6 @@ const intents = new Discord.Intents(32767);
 const Command = require("./Command");
 const Database = require("./Database");
 const Event = require("./Event");
-const SlashCommand = require("./SlashCommand");
 
 class Client extends Discord.Client {
 
@@ -18,7 +17,7 @@ class Client extends Discord.Client {
 
         this.commands = new Discord.Collection()
         this.db = Database;
-        this.color = "#757575";
+        this.color = "#2f3136";
     }
 
     async start(token) {
@@ -47,8 +46,6 @@ class Client extends Discord.Client {
                 this.on(event.event, event.run.bind(null, this));
             })
         });
-
-        await SlashCommand(this);
 
         this.login(token)
     }
