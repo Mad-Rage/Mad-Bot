@@ -29,7 +29,7 @@ class Client extends Discord.Client {
             */
 
             let props = require(`../Commandes/${f}`);
-            console.log(`${f} commande chargée avec succès ! !`);
+            console.log(`${f} commande chargée avec succès !`);
             this.commands.set(props.name, props)
         })
 

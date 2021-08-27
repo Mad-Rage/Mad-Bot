@@ -19,7 +19,12 @@ module.exports = async(bot) => {
         new SlashCommandBuilder()
         .setName("clear")
         .setDescription("Permet de supprimer un nombre de messages")
-        .addStringOption(option => option.setName("nombre").setDescription("Le nombre de messages a effacer").setRequired(true))
+        .addStringOption(option => option.setName("nombre").setDescription("Le nombre de messages a effacer").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("rank")
+        .setDescription("Permet de connaître l'expérience d'un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre où vous voulez l'expérience").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

@@ -3,6 +3,8 @@ const Event = require("../../Structure/Event")
 
 module.exports = new Event("messageCreate", async (bot, message) => {
 
+    if(message.author.bot) return;
+
     const db = bot.db;
 
     db.query(`SELECT * FROM serveur WHERE guildID = ${message.guild.id}`, async (err, req) => {
@@ -24,6 +26,43 @@ module.exports = new Event("messageCreate", async (bot, message) => {
         let args = messageArray.slice(1);
 
         let commandFile = bot.commands.get(command.slice(prefix.length))
+
+        db.query(`SELECT * FROM user WHERE userID = ${message.author.id}`, async (err, req) => {
+
+            if(req.length < 1) {
+
+                let sql = `INSERT INTO user (userID, xp, level) VALUES (${message.author.id}, '0', '0')`
+                db.query(sql, function(err) {
+                    if(err) throw err;
+                })
+
+            } else {
+
+                if(!message.content.startsWith(prefix)) {
+
+                    let xp = Math.floor(Math.random() * 24) + 1;
+                    let need = (parseInt(req[0].level) + 1) * 1000;
+
+                    db.query(`UPDATE user SET xp = '${parseInt(req[0].xp) + xp}' WHERE userID = ${message.author.id}`)
+
+                    if(parseInt(req[0].xp) >= need) {
+
+                        db.query(`UPDATE user SET level = '${parseInt(req[0].level) + 1}' WHERE userID = ${message.author.id}`)
+                        db.query(`UPDATE user SET xp = '${parseInt(req[0].xp) - need}' WHERE userID = ${message.author.id}`)
+
+                        message.channel.send(`Bravo ${message.author}, tu es passé niveau \`${parseInt(req[0].level) + 1}\``)
+                    }
+
+                    if(parseInt(req[0].xp) < 0) {
+
+                        db.query(`UPDATE user SET level = '${parseInt(req[0].level) - 1}' WHERE userID = ${message.author.id}`)
+                        db.query(`UPDATE user SET xp = '${(parseInt(req[0].level) * 1000) + parseInt(req[0].xp)}' WHERE userID = ${message.author.id}`)
+
+                        message.channel.send(`Dommage ${message.author}, tu es redescendu niveau \`${parseInt(req[0].level) - 1}\``)
+                    }
+                }
+            }
+        })
 
         if(!message.content.startsWith(prefix)) return;
         if(!commandFile) return message.reply(`Cette commande n'existe pas !`)

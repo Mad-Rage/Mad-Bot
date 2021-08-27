@@ -30,7 +30,7 @@ module.exports = new Command({
                 try {
                     await message.reply(`${message.author === undefined ? message.user : message.author} a supprimé \`${msg.size}\` messages avec succès !`)
                 } catch (err) {
-                    await message.channel.send(`${message.author === undefined ? message.user : message.author} a supprimé \`${msg.size}\` messages avec succès !`)
+                    await message.channel.send(`${message.author === undefined ? message.user : message.author} a supprimé \`${msg.size}\` messages avec succès !`).then(async mess => setTimeout(async () => {mess.delete()}, 5000))
                 }
             })
 
