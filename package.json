@@ -12,7 +12,7 @@
     "@discordjs/builders": "^0.5.0",
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.22.0",
-    "discord-canvas-easy": "^1.0.2",
+    "discord-canvas-easy": "^1.2.0",
     "discord.js": "^13.1.0",
     "fs": "^0.0.1-security",
     "mysql": "^2.18.1"

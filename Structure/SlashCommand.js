@@ -24,7 +24,11 @@ module.exports = async(bot) => {
         new SlashCommandBuilder()
         .setName("rank")
         .setDescription("Permet de connaître l'expérience d'un utilisateur")
-        .addUserOption(option => option.setName("membre").setDescription("Le membre où vous voulez l'expérience").setRequired(false))
+        .addUserOption(option => option.setName("membre").setDescription("Le membre où vous voulez l'expérience").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("leaderboard")
+        .setDescription("Permet de connaître les utilisateurs avec le plus d'expérience !")
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

@@ -33,12 +33,12 @@ module.exports = new Command({
     
                     let xptotal = 0;
     
-                    for(let i = 0; i < (parseInt(level) + 1); i++) {
+                    for(let i = 0; i < (level + 1); i++) {
     
                         xptotal = xptotal + (i * 1000)
                     }
     
-                    xptotal = xptotal + parseInt(xp)
+                    xptotal = xptotal + xp
     
                     return xptotal;
                 }
@@ -51,9 +51,9 @@ module.exports = new Command({
                     const Rank = await new Canvas.Card()
                     .setBackground("./background.jpg")
                     .setGuild(message.guild)
-                    .setUser(message.author === undefined ? message.user : message.author)
+                    .setUser(user)
                     .setXp(parseInt(req[0].xp))
-                    .setXpNeed(parseInt(req[0].level) * 1000)
+                    .setXpNeed((parseInt(req[0].level) + 1) * 1000)
                     .setLevel(parseInt(req[0].level))
                     .setRank(rank)
                     .setColorFont("#ff0000")
