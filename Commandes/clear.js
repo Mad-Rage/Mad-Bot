@@ -6,14 +6,12 @@ module.exports = new Command({
     name: "clear",
     description: "Permet de supprimer un nombre de messages",
     utilisation: "clear [nombre de messages]",
-    permission: "Gérer les messages",
+    permission: Discord.Permissions.FLAGS.MANAGE_MESSAGES,
     category: "Modération",
 
     async run(bot, message, args, db) {
 
         try {
-
-            if(!message.member.permissions.has(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) return message.reply("Vous n'avez pas la permission reequise pour exécuter cette commande !")
 
             let number = args[0] || args._hoistedOptions[0].value
             if(isNaN(number)) return message.reply("Veuillez indiquer un nombre entre `0` et `100` !")

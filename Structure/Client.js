@@ -18,6 +18,9 @@ class Client extends Discord.Client {
         this.commands = new Discord.Collection()
         this.db = Database;
         this.color = "#2f3136";
+        this.function = {
+            createID: require("../Fonctions/createID")
+        }
     }
 
     async start(token) {

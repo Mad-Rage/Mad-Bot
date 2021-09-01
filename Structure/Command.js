@@ -16,7 +16,7 @@ function RunFunction(bot, message, args, db) {}
 class Command {
 
     /**
-     * @typedef {{name: string, description: string, utilisation: string, permission: string, category: string, run: RunFunction}} CommandOptions
+     * @typedef {{name: string, description: string, utilisation: string, permission: bigint, category: string, run: RunFunction}} CommandOptions
      * @param {CommandOptions} options 
     */
     
