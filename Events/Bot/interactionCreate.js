@@ -7,7 +7,7 @@ module.exports = new Event("interactionCreate", async (bot, interaction) => {
 
         const command = bot.commands.get(interaction.commandName)
 
-        if(!interaction.member.permissions.has(new Discord.Permissions(command.permission))) return interaction.reply("Vous n'avez pas la permission requise pour exécuter cette commande !")
+        if(command.permission !== "Aucune" && !interaction.member.permissions.has(new Discord.Permissions(command.permission))) return interaction.reply("Vous n'avez pas la permission requise pour exécuter cette commande !")
 
         command.run(bot, interaction, interaction.options, bot.db)
     }

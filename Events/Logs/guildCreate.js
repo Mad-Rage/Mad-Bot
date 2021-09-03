@@ -29,7 +29,19 @@ module.exports = new Event("guildCreate", async (bot, guild) => {
 
         new SlashCommandBuilder()
         .setName("leaderboard")
-        .setDescription("Permet de connaître les utilisateurs avec le plus d'expérience !")
+        .setDescription("Permet de connaître les utilisateurs avec le plus d'expérience !"),
+
+        new SlashCommandBuilder()
+        .setName("ban")
+        .setDescription("Permet de bannir définitivement un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à bannir").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du bannissement").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("kick")
+        .setDescription("Permet d'expulser un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à expulser").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison de l'expulsion").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

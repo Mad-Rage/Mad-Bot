@@ -42,9 +42,9 @@ module.exports = new Command({
                 const attachment = new Discord.MessageAttachment(leaderboard, 'leaderboard.png')
 
                 try {
-                    msg.edit({files: [attachment]})
+                    msg.edit({content: null, files: [attachment]})
                 } catch (err) {
-                    message.editReply({files: [attachment]})
+                    message.editReply({content: null, files: [attachment]})
                 }
             })
         })
