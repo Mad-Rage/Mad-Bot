@@ -6,7 +6,7 @@ module.exports = async (sanction) => {
 
     for(let i = 0; i < 10; i++) {
 
-        id.push(alphabet[Math.floor(Mah.random * alphabet.length - 1)])
+        id.push(alphabet[Math.floor(Math.random() * alphabet.length - 1)])
     }
 
     return `${sanction}-${id.join("")}`

@@ -24,8 +24,42 @@ module.exports = new Command({
         try {
             await user.send(`${message.user === undefined ? message.author.tag : message.user.tag} vous a banni du serveur ${message.guild.name} pour la raison ${reason} !`)
         } catch (err) {}
-        await message.reply(`${user.tag} a été banni par ${message.user === undefined ? message.author.tag : message.user.tag} pour la raison ${reason} avec succès !`)
 
-        await message.guild.members.cache.get(user.id).ban({reason: `${reason} (Banni par ${message.user === undefined ? message.author.tag : message.user.tag})`})
+        const ID = await bot.function.createID("BAN")
+
+        const btn = new Discord.MessageActionRow().addComponents(new Discord.MessageButton()
+        .setStyle("DANGER")
+        .setLabel("Débannir")
+        .setCustomId("unban")
+        .setEmoji("🔓"))
+
+        await message.reply({content: `${user.tag} a été banni par ${message.user === undefined ? message.author.tag : message.user.tag} pour la raison ${reason} avec succès !`, components: [btn]}).then(async msg => {
+
+            await message.guild.members.cache.get(user.id).ban({reason: `${reason} (Banni par ${message.user === undefined ? message.author.tag : message.user.tag})`})
+
+            if(reason.includes("'")) reason = reason.replace(/'/g, "\\'")
+
+            let sql = `INSERT INTO bans (userID, authorID, banID, reason, date, time) VALUES(${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${reason}', '${Date.now()}', 'Défintif')`
+            db.query(sql, function(err) {
+                if(err) throw err;
+            })
+
+            const filter = async() => true;
+            const collector = msg.createMessageComponentCollector({filter})
+
+            collector.on("collect", async button => {
+
+                if(!button.member.permissions.has(new Discord.Permissions(Discord.Permissions.FLAGS.BAN_MEMBERS))) return button.reply({content: "Vous n'avez pas la permission requise pour cliquer sur ce bouton !", ephemeral: true})
+
+                if(button.customId === "unban") {
+
+                    await message.guild.members.unban(user.id)
+
+                    await button.reply(`${button.user.tag} a débanni ${user.tag} !`)
+
+                    await collector.stop()
+                }
+            })
+        })
     }
 })

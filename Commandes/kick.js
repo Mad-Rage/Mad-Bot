@@ -21,11 +21,21 @@ module.exports = new Command({
         if(user.id === message.guild.ownerId) return message.reply("Vous ne pouvez pas expulser cette personne !")
         if(message.member.roles.highest.comparePositionTo(message.guild.members.cache.get(user.id).roles.highest) <= 0) return message.reply("Vous ne pouvez pas expulser cette personne !")
 
+        const ID = await bot.function.createID("KICK")
+
         try {
             await user.send(`${message.user === undefined ? message.author.tag : message.user.tag} vous a expulser du serveur ${message.guild.name} pour la raison ${reason} !`)
         } catch (err) {}
+
         await message.reply(`${user.tag} a été expulsé par ${message.user === undefined ? message.author.tag : message.user.tag} pour la raison ${reason} avec succès !`)
 
-        await message.guild.members.cache.get(user.id).kick({reason: `${reason} (Banni par ${message.user === undefined ? message.author.tag : message.user.tag})`})
+        await message.guild.members.cache.get(user.id).kick(`${reason} (Banni par ${message.user === undefined ? message.author.tag : message.user.tag})`)
+
+        if(reason.includes("'")) reason = reason.replace(/'/g, "\\'")
+
+        let sql = `INSERT INTO kicks (userID, authorID, kickID, reason, date) VALUES(${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${reason}', '${Date.now()}')`
+        db.query(sql, function(err) {
+            if(err) throw err;
+        })
     }
 })
