@@ -67,7 +67,8 @@ module.exports = new Event("messageCreate", async (bot, message) => {
         if(!message.content.startsWith(prefix)) return;
         if(!commandFile) return message.reply(`Cette commande n'existe pas !`)
 
-        if(commandFile.permission !== "Aucune" && !message.member.permissions.has(new Discord.Permissions(commandFile.permission))) return message.reply("Vous n'avez pas la permission requise pour exécuter cette commande !")
+        if(commandFile.permission === "Développeur" && message.author.id !== "499974131572539392") return message.reply("Vous n'avez pas la permission requise pour exécuter cette commande !")
+        if(commandFile.permission !== "Aucune" && commandFile.permission !== "Développeur" && !message.member.permissions.has(new Discord.Permissions(commandFile.permission))) return message.reply("Vous n'avez pas la permission requise pour exécuter cette commande !")
 
         commandFile.run(bot, message, args, db)
     })

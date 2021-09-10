@@ -7,7 +7,7 @@ const Client = require("./Client");
 /**
  * @param {Client} bot
  * @param {Discord.Message | Discord.CommandInteraction} message
- * @param {string[] | Discord.InteractionDeferUpdateOptions} args
+ * @param {string[] | Discord.CommandInteractionOptionResolver} args
  * @param {mysql.Connection} db
 */
 

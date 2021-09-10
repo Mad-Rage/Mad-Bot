@@ -40,7 +40,25 @@ module.exports = async(bot) => {
         .setName("kick")
         .setDescription("Permet d'expulser un utilisateur")
         .addUserOption(option => option.setName("membre").setDescription("Le membre à expulser").setRequired(true))
-        .addStringOption(option => option.setName("raison").setDescription("La raison de l'expulsion").setRequired(false))
+        .addStringOption(option => option.setName("raison").setDescription("La raison de l'expulsion").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("restart")
+        .setDescription("Permet de redémarrer le bot !"),
+
+        new SlashCommandBuilder()
+        .setName("stop")
+        .setDescription("Permet de stopper le bot !"),
+
+        new SlashCommandBuilder()
+        .setName("eval")
+        .setDescription("Permet d'évaluer un code")
+        .addStringOption(option => option.setName("code").setDescription("Le code à évaluer").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("reload")
+        .setDescription("Permet de recharger une commande")
+        .addStringOption(option => option.setName("commande").setDescription("La commande a recharger").setRequired(true))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
