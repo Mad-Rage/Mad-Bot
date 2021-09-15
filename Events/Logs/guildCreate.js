@@ -59,7 +59,12 @@ module.exports = new Event("guildCreate", async (bot, guild) => {
         new SlashCommandBuilder()
         .setName("reload")
         .setDescription("Permet de recharger une commande")
-        .addStringOption(option => option.setName("commande").setDescription("La commande a recharger").setRequired(true))
+        .addStringOption(option => option.setName("commande").setDescription("La commande a recharger").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("help")
+        .setDescription("Permet de connaître toutes les commandes du bot")
+        .addStringOption(option => option.setName("commande").setDescription("La commande où vous voulez les informations").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
