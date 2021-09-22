@@ -16,6 +16,7 @@ class Client extends Discord.Client {
         */
 
         this.commands = new Discord.Collection()
+        this.alias = new Discord.Collection()
         this.db = Database;
         this.color = "#2f3136";
         this.function = {
@@ -34,6 +35,11 @@ class Client extends Discord.Client {
             let props = require(`../Commandes/${f}`);
             console.log(`${f} commande chargée avec succès !`);
             this.commands.set(props.name, props)
+            if(props.alias.length !== 0) {
+                props.alias.forEach(async a => {
+                    this.alias.set(a, props)
+                })
+            }
         })
 
         fs.readdirSync("./Events/").forEach(dirs => {

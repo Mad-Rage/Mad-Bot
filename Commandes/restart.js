@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "restart",
     description: "Permet de redémarrer le bot",
-    utilisation: "restart",
+    utilisation: "",
+    alias: ["restart"],
     permission: "Développeur",
     category: "Système",
 

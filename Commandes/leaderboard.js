@@ -6,7 +6,8 @@ module.exports = new Command({
 
     name: "leaderboard",
     description: "Permet de connaître les 10 utilisateurs avec le plus d'expérience",
-    utilisation: "leaderboard",
+    utilisation: "",
+    alias: ["leaderboard", "ranking", "top"],
     permission: "Aucune",
     category: "Expérience",
 

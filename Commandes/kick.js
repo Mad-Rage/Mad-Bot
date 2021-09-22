@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "kick",
     description: "Permet d'expulser un utilisateur",
-    utilisation: "kick [membre] (raison)",
+    utilisation: "[membre] (raison)",
+    alias: ["kick"],
     permission: Discord.Permissions.FLAGS.KICK_MEMBERS,
     category: "Modération",
 

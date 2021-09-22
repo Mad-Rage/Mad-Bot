@@ -6,7 +6,8 @@ module.exports = new Command({
 
     name: "rank",
     description: "Permet de l'expérience d'un utilisateur",
-    utilisation: "rank",
+    utilisation: "(membre)",
+    alias: ["rank", "level"],
     permission: "Aucune",
     category: "Expérience",
 

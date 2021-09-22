@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "eval",
     description: "Permet d'évaluer un code",
-    utilisation: "eval [code]",
+    utilisation: "[code]",
+    alias: ["eval", "e"],
     permission: "Développeur",
     category: "Système",
 

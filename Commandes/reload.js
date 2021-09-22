@@ -5,13 +5,14 @@ module.exports = new Command({
 
     name: "reload",
     description: "Permet de recharger une commande",
-    utilisation: "reload",
+    utilisation: "[commande]",
+    alias: ["reload", "re"],
     permission: "Développeur",
     category: "Système",
 
     async run(bot, message, args, db) {
 
-        const command = bot.commands.get(message.user ? args._hoistedOptions[0].value : args[0])
+        const command = bot.alias.get(message.user ? args._hoistedOptions[0].value : args[0])
         if(!command) return message.reply("Veuillez indiquer une commande !")
 
         await message.reply("En cours...").then(async msg => {

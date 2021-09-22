@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "clear",
     description: "Permet de supprimer un nombre de messages",
-    utilisation: "clear [nombre de messages]",
+    utilisation: "[nombre de messages]",
+    alias: ["clear", "delete"],
     permission: Discord.Permissions.FLAGS.MANAGE_MESSAGES,
     category: "Modération",
 

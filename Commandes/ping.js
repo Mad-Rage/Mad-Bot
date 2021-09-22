@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "ping",
     description: "Permet de connaître la latence du bot",
-    utilisation: "ping",
+    utilisation: "",
+    alias: ["ping"],
     permission: "Aucune",
     category: "Information",
 

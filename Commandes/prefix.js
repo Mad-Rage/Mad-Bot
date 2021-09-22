@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "prefix",
     description: "Permet de changer le préfixe du bot",
-    utilisation: "prefix",
+    utilisation: "[préfixe]",
+    alias: ["prefix", "setprefix", "sp"],
     permission: Discord.Permissions.FLAGS.ADMINISTRATOR,
     category: "Système",
 

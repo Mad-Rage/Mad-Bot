@@ -25,7 +25,7 @@ module.exports = new Event("messageCreate", async (bot, message) => {
         let command = messageArray[0];
         let args = messageArray.slice(1);
 
-        let commandFile = bot.commands.get(command.slice(prefix.length))
+        let commandFile = bot.alias.get(command.slice(prefix.length))
 
         db.query(`SELECT * FROM user WHERE userID = ${message.author.id}`, async (err, req) => {
 

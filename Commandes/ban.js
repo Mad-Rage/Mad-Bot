@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "ban",
     description: "Permet de bannir définitivement un utilisateur",
-    utilisation: "ban [membre] (raison)",
+    utilisation: "[membre] (raison)",
+    alias: ["ban"],
     permission: Discord.Permissions.FLAGS.BAN_MEMBERS,
     category: "Modération",
 

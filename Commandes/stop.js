@@ -5,7 +5,8 @@ module.exports = new Command({
 
     name: "stop",
     description: "Permet de stopper le bot",
-    utilisation: "stop",
+    utilisation: "",
+    alias: ["stop"],
     permission: "Développeur",
     category: "Système",
 

@@ -5,13 +5,14 @@ module.exports = new Command({
 
     name: "help",
     description: "Permet de connaître toutes les commandes du bot",
-    utilisation: "help",
+    utilisation: "",
+    alias: ["help", "h", "aide"],
     permission: "Aucune",
     category: "Information",
 
     async run(bot, message, args, db) {
 
-        const command = message.user ? bot.commands.get(args._hoistedOptions.length !== 0 ? args._hoistedOptions[0].value : "") : bot.commands.get(args[0])
+        const command = message.user ? bot.alias.get(args._hoistedOptions.length !== 0 ? args._hoistedOptions[0].value : "") : bot.alias.get(args[0])
         
         db.query(`SELECT * FROM serveur WHERE guildID = ${message.guildId}`, async (err, req) => {
 
@@ -49,7 +50,7 @@ module.exports = new Command({
                 .setColor(bot.color)
                 .setTitle(`Toutes les commandes du bot`)
                 .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
-                .setDescription(`Nom de la commande : \`${command.name}\`\nDescription de la commande : \`${command.description}\`\nUtilisation de la commande : \`${command.utilisation}\`\nCatégorie de la commande : \`${command.category}\`\nPermission de la commande : \`${command.permission}\``)
+                .setDescription(`Nom de la commande : \`${message.user ? args._hoistedOptions[0].value : args[0]}\`\nDescription de la commande : \`${command.description}\`\nUtilisation de la commande : \`${message.user ? args._hoistedOptions[0].value : args[0]} ${command.utilisation}\`\nAlias de la commande : ${command.alias.filter(a => a !== (message.user ? args._hoistedOptions[0].value : args[0])).map(a => `\`${a}\``).join(" ")}\nCatégorie de la commande : \`${command.category}\`\nPermission de la commande : \`${new Discord.Permissions(command.permission).toArray(false)}\``)
                 .setTimestamp()
                 .setFooter(`${message.user ? message.user.username : message.author.username}`, message.user ? message.user.displayAvatarURL({dynamic: true}) : message.author.displayAvatarURL({dynamic: true}))
 
