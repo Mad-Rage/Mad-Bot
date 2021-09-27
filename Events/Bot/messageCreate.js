@@ -11,7 +11,7 @@ module.exports = new Event("messageCreate", async (bot, message) => {
 
         if(req.length < 1) {
 
-            let sql = `INSERT INTO serveur (guildID, prefix) VALUES (${message.guild.id}, '/')`
+            let sql = `INSERT INTO serveur (guildID, prefix) VALUES (${message.guild.id}, '!')`
             db.query(sql, function(err) {
                 if(err) throw err;
             })

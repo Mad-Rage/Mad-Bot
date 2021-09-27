@@ -34,7 +34,7 @@ module.exports = new Command({
 
         if(reason.includes("'")) reason = reason.replace(/'/g, "\\'")
 
-        let sql = `INSERT INTO kicks (userID, authorID, kickID, reason, date) VALUES(${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${reason}', '${Date.now()}')`
+        let sql = `INSERT INTO kicks (userID, authorID, kickID, guildID, reason, date) VALUES(${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${message.guildId}', '${reason}', '${Date.now()}')`
         db.query(sql, function(err) {
             if(err) throw err;
         })

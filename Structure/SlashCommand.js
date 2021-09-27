@@ -63,7 +63,13 @@ module.exports = async(bot) => {
         new SlashCommandBuilder()
         .setName("help")
         .setDescription("Permet de connaître toutes les commandes du bot")
-        .addStringOption(option => option.setName("commande").setDescription("La commande où vous voulez les informations").setRequired(false))
+        .addStringOption(option => option.setName("commande").setDescription("La commande où vous voulez les informations").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("warn")
+        .setDescription("Permet d'avertir un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à avertir").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison de l'avertissement").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
