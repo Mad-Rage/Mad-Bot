@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["restart"],
     permission: "Développeur",
     category: "Système",
+    cooldown: 10,
 
     async run(bot, message, args, db) {
 

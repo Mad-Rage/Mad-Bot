@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["clear", "delete"],
     permission: Discord.Permissions.FLAGS.MANAGE_MESSAGES,
     category: "Modération",
+    cooldown: 10,
 
     async run(bot, message, args, db) {
 

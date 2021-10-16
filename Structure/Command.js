@@ -16,7 +16,7 @@ function RunFunction(bot, message, args, db) {}
 class Command {
 
     /**
-     * @typedef {{name: string, description: string, utilisation: string, alias: string[], permission: bigint, category: string, run: RunFunction}} CommandOptions
+     * @typedef {{name: string, description: string, utilisation: string, alias: string[], permission: bigint, category: string, cooldown: number, run: RunFunction}} CommandOptions
      * @param {CommandOptions} options 
     */
     
@@ -28,6 +28,7 @@ class Command {
         this.alias = options.alias;
         this.permission = options.permission;
         this.category = options.category;
+        this.cooldown = options.cooldown;
         this.run = options.run;
     }
 }

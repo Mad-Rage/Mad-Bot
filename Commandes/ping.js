@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["ping"],
     permission: "Aucune",
     category: "Information",
+    cooldown: 0,
 
     async run(bot, message, args, db) {
 

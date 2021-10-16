@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["help", "h", "aide"],
     permission: "Aucune",
     category: "Information",
+    cooldown: 2,
 
     async run(bot, message, args, db) {
 

@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["ban"],
     permission: Discord.Permissions.FLAGS.BAN_MEMBERS,
     category: "Modération",
+    cooldown: 10,
 
     async run(bot, message, args, db) {
 
@@ -40,7 +41,7 @@ module.exports = new Command({
 
             if(reason.includes("'")) reason = reason.replace(/'/g, "\\'")
 
-            let sql = `INSERT INTO bans (userID, authorID, banID, guildID, reason, date, time) VALUES(${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${message.guildId}', '${reason}', '${Date.now()}', 'Défintif')`
+            let sql = `INSERT INTO bans (userID, authorID, banID, guildID, reason, date, time) VALUES (${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${message.guildId}', '${reason}', '${Date.now()}', 'Défintif')`
             db.query(sql, function(err) {
                 if(err) throw err;
             })

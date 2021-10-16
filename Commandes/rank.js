@@ -10,6 +10,7 @@ module.exports = new Command({
     alias: ["rank", "level"],
     permission: "Aucune",
     category: "Expérience",
+    cooldown: 5,
 
     async run(bot, message, args, db) {
 

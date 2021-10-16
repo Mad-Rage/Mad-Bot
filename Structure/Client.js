@@ -16,6 +16,7 @@ class Client extends Discord.Client {
         */
 
         this.commands = new Discord.Collection()
+        this.cooldown = new Discord.Collection()
         this.alias = new Discord.Collection()
         this.db = Database;
         this.color = "#2f3136";

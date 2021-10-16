@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["eval", "e"],
     permission: "Développeur",
     category: "Système",
+    cooldown: 0,
 
     async run(bot, message, args, db) {
 

@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["prefix", "setprefix", "sp"],
     permission: Discord.Permissions.FLAGS.ADMINISTRATOR,
     category: "Système",
+    cooldown: 10,
 
     async run(bot, message, args, db) {
 

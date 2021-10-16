@@ -10,6 +10,7 @@ module.exports = new Command({
     alias: ["leaderboard", "ranking", "top"],
     permission: "Aucune",
     category: "Expérience",
+    cooldown: 5,
 
     async run(bot, message, args, db) {
 
@@ -40,7 +41,7 @@ module.exports = new Command({
 
                 const leaderboard = (await Leaderboard.toLeaderboard()).toBuffer()
 
-                const attachment = new Discord.MessageAttachment(leaderboard, 'leaderboard.png')
+                const attachment = new Discord.MessageAttachment(leaderboard.toBuffer(), 'leaderboard.png')
 
                 try {
                     msg.edit({content: null, files: [attachment]})

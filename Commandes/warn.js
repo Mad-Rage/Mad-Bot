@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["warn", "warning"],
     permission: Discord.Permissions.FLAGS.MANAGE_MESSAGES,
     category: "Modération",
+    cooldown: 10,
 
     async run(bot, message, args, db) {
 
@@ -16,12 +17,12 @@ module.exports = new Command({
         if(!user) return message.reply("Aucune personne trouvée !")
         if(!message.guild.members.cache.get(user.id)) return message.reply("Aucune personne trouvée !")
 
-        let reason = message.user ? args._hoistedOptions[1].value : args.slice(1).join("")
+        let reason = message.user ? args._hoistedOptions.length >= 2 ? args._hoistedOptions[1].value : undefined : args.slice(1).join("")
         if(!reason) reason = "Aucune raison donnée";
 
-        if(message.user === undefined ? (user.id === message.author.id) : (user.id === message.user.id)) return message.reply("Vous ne pouvez pas vous bannir vous-même !")
-        if(user.id === message.guild.ownerId) return message.reply("Vous ne pouvez pas bannir cette personne !")
-        if(message.member.roles.highest.comparePositionTo(message.guild.members.cache.get(user.id).roles.highest) <= 0) return message.reply("Vous ne pouvez pas bannir cette personne !")
+        if(message.user === undefined ? (user.id === message.author.id) : (user.id === message.user.id)) return message.reply("Vous ne pouvez pas vous avertir vous-même !")
+        if(user.id === message.guild.ownerId) return message.reply("Vous ne pouvez pas avertir cette personne !")
+        if(message.member.roles.highest.comparePositionTo(message.guild.members.cache.get(user.id).roles.highest) <= 0) return message.reply("Vous ne pouvez pas avertir cette personne !")
 
         const ID = await bot.function.createID("WARN")
 

@@ -9,6 +9,7 @@ module.exports = new Command({
     alias: ["kick"],
     permission: Discord.Permissions.FLAGS.KICK_MEMBERS,
     category: "Modération",
+    cooldown: 10,
 
     async run(bot, message, args, db) {
 
