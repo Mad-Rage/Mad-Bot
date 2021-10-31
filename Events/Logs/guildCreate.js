@@ -73,10 +73,9 @@ module.exports = new Event("guildCreate", async (bot, guild) => {
         .addStringOption(option => option.setName("raison").setDescription("La raison de l'avertissement").setRequired(false)),
 
         new SlashCommandBuilder()
-        .setName("mute")
-        .setDescription("Permet de rendre muet un utilisateur")
-        .addUserOption(option => option.setName("membre").setDescription("Le membre à rendre muet").setRequired(true))
-        .addStringOption(option => option.setName("raison").setDescription("La raison du retrait de parole").setRequired(false))
+        .setName("antiraid")
+        .setDescription("Permet d'activer ou de désactiver l'anti-raid")
+        .addStringOption(option => option.setName("état").setDescription("L'état de l'anti-raid").setRequired(true))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
