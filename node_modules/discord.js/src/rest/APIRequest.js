@@ -1,11 +1,11 @@
 'use strict';
 
-const https = require('https');
+const https = require('node:https');
 const FormData = require('@discordjs/form-data');
 const fetch = require('node-fetch');
 const { UserAgent } = require('../util/Constants');
 
-const agent = new https.Agent({ keepAlive: true });
+let agent = null;
 
 class APIRequest {
   constructor(rest, method, path, options) {
@@ -30,6 +30,8 @@ class APIRequest {
   }
 
   make() {
+    agent ??= new https.Agent({ ...this.client.options.http.agent, keepAlive: true });
+
     const API =
       this.options.versioned === false
         ? this.client.options.http.api
@@ -46,7 +48,7 @@ class APIRequest {
     if (this.options.headers) headers = Object.assign(headers, this.options.headers);
 
     let body;
-    if (this.options.files && this.options.files.length) {
+    if (this.options.files?.length) {
       body = new FormData();
       for (const file of this.options.files) {
         if (file?.file) body.append(file.key ?? file.name, file.file, file.name);

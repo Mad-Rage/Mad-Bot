@@ -12,10 +12,6 @@ class WidgetMember extends Base {
    * @property {string} name The name of the activity
    */
 
-  /**
-   * @param {Client} client The instantiating client
-   * @param {Object} data The raw data
-   */
   constructor(client, data) {
     super(client);
 
@@ -50,7 +46,7 @@ class WidgetMember extends Base {
     this.status = data.status;
 
     /**
-     * IIf the member is server deafened
+     * If the member is server deafened
      * @type {?boolean}
      */
     this.deaf = data.deaf ?? null;

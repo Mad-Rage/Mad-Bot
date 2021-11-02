@@ -75,7 +75,20 @@ module.exports = new Event("guildCreate", async (bot, guild) => {
         new SlashCommandBuilder()
         .setName("antiraid")
         .setDescription("Permet d'activer ou de désactiver l'anti-raid")
-        .addStringOption(option => option.setName("état").setDescription("L'état de l'anti-raid").setRequired(true))
+        .addStringOption(option => option.setName("état").setDescription("L'état de l'anti-raid").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("tempban")
+        .setDescription("Permet de bannir temporairement un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à bannir").setRequired(true))
+        .addStringOption(option => option.setName("temps").setDescription("Le temps du bannissement").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du bannissement").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("unban")
+        .setDescription("Permet de débannir un utilisateur")
+        .addStringOption(option => option.setName("membre").setDescription("Le membre à débannir").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du débannissement").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

@@ -119,7 +119,7 @@ class MessageButton extends BaseMessageComponent {
 
   /**
    * Sets the URL of this button.
-   * <note>MessageButton#style must be LINK when setting a URL</note>
+   * <info>MessageButton#style must be LINK when setting a URL</info>
    * @param {string} url The URL of this button
    * @returns {MessageButton}
    */
@@ -130,7 +130,7 @@ class MessageButton extends BaseMessageComponent {
 
   /**
    * Transforms the button to a plain object.
-   * @returns {APIMessageComponent} The raw data of this button
+   * @returns {APIMessageButton} The raw data of this button
    */
   toJSON() {
     return {

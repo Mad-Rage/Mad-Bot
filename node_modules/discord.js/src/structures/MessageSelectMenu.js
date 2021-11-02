@@ -146,6 +146,16 @@ class MessageSelectMenu extends BaseMessageComponent {
   }
 
   /**
+   * Sets the options of the select menu.
+   * @param {...MessageSelectOptionData|MessageSelectOptionData[]} options The options to set
+   * @returns {MessageSelectMenu}
+   */
+  setOptions(...options) {
+    this.spliceOptions(0, this.options.length, options);
+    return this;
+  }
+
+  /**
    * Removes, replaces, and inserts options in the select menu.
    * @param {number} index The index to start at
    * @param {number} deleteCount The number of options to remove
@@ -158,8 +168,8 @@ class MessageSelectMenu extends BaseMessageComponent {
   }
 
   /**
-   * Transforms this select menu to a plain object
-   * @returns {Object} The raw data of this select menu
+   * Transforms the select menu into a plain object
+   * @returns {APIMessageSelectMenu} The raw data of this select menu
    */
   toJSON() {
     return {
