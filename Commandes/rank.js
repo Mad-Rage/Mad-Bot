@@ -51,6 +51,7 @@ module.exports = new Command({
                     const rank = leaderboard.findIndex(u => u.userID === user.id) + 1;
     
                     const Rank = await new Canvas.Card()
+                    .setBot(bot)
                     .setBackground("./background.jpg")
                     .setGuild(message.guild)
                     .setUser(user)

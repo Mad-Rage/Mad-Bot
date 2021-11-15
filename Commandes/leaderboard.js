@@ -41,7 +41,7 @@ module.exports = new Command({
 
                 const leaderboard = (await Leaderboard.toLeaderboard()).toBuffer()
 
-                const attachment = new Discord.MessageAttachment(leaderboard.toBuffer(), 'leaderboard.png')
+                const attachment = new Discord.MessageAttachment(leaderboard, 'leaderboard.png')
 
                 try {
                     msg.edit({content: null, files: [attachment]})
