@@ -86,8 +86,15 @@ module.exports = async(bot) => {
         new SlashCommandBuilder()
         .setName("unban")
         .setDescription("Permet de débannir un utilisateur")
-        .addStringOption(option => option.setName("membre").setDescription("Le membre à débannir").setRequired(true))
-        .addStringOption(option => option.setName("raison").setDescription("La raison du débannissement").setRequired(false))
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à débannir").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du débannissement").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("mute")
+        .setDescription("Permet de rendre muet un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à rendre muet").setRequired(true))
+        .addStringOption(option => option.setName("temps").setDescription("Le temps du muet").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du muet").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

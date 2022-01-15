@@ -17,7 +17,7 @@ module.exports = new Command({
         let user = message.user ? args._hoistedOptions[0].value : args[0]
         if(!user) return message.reply("Aucune personne trouvée !")
 
-        let reason = message.user ? args._hoistedOptions.length >= 2 ? args._hoistedOptions[1].value : undefined : args.slice(1).join(" ")
+        let reason = message.user ? (args._hoistedOptions.length > 1 ? args._hoistedOptions[1].value : undefined) : args.slice(1).join(" ");
         if(!reason) reason = "Aucune raison donnée";
 
         if((await message.guild.bans.fetch(message.user ? args._hoistedOptions[0].value : args[0])).size === 0) return message.reply("Aucune personne trouvée dans les bannissements !")

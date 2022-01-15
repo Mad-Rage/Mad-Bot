@@ -51,7 +51,7 @@ module.exports = new Event("ready", async bot => {
     .setThumbnail(bot.user.displayAvatarURL({dynamic: true}))
     .setDescription("Veuillez choisir les rôles de notifications que vous voulez dans le menu déroulant ci-dessous.")
     .setTimestamp()
-    .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL({dynamic: true}))
+    .setFooter({text: `${bot.user.username}`, iconURL: bot.user.displayAvatarURL({dynamic: true})})
 
     const menu = new Discord.MessageActionRow().addComponents(new Discord.MessageSelectMenu()
     .setCustomId("menu")

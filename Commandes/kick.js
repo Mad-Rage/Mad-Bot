@@ -16,7 +16,7 @@ module.exports = new Command({
         let user = message.user === undefined ? (message.mentions.users.first() || bot.users.cache.get(args[0])) : bot.users.cache.get(args._hoistedOptions[0].value)
         if(!user) message.reply("Aucune personne trouvée !")
 
-        let reason = message.user === undefined ? args.slice(1).join(" ") : args._hoistedOptions[1].value;
+        let reason = message.user ? (args._hoistedOptions.length > 1 ? args._hoistedOptions[1].value : undefined) : args.slice(1).join(" ");
         if(!reason) reason = "Aucune raison donnée";
 
         if(message.user === undefined ? (user.id === message.author.id) : (user.id === message.user.id)) return message.reply("Vous ne pouvez pas vous expulser vous-même !")

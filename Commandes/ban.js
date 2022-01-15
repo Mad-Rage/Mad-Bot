@@ -16,7 +16,7 @@ module.exports = new Command({
         let user = message.user === undefined ? (message.mentions.users.first() || bot.users.cache.get(args[0])) : bot.users.cache.get(args._hoistedOptions[0].value)
         if(!user) return message.reply("Aucune personne trouvée !")
 
-        let reason = message.user === undefined ? args.slice(1).join(" ") : args._hoistedOptions[1].value;
+        let reason = message.user ? (args._hoistedOptions.length > 1 ? args._hoistedOptions[1].value : undefined) : args.slice(1).join(" ");
         if(!reason) reason = "Aucune raison donnée";
 
         if(message.user === undefined ? (user.id === message.author.id) : (user.id === message.user.id)) return message.reply("Vous ne pouvez pas vous bannir vous-même !")
@@ -41,7 +41,7 @@ module.exports = new Command({
 
             if(reason.includes("'")) reason = reason.replace(/'/g, "\\'")
 
-            let sql = `INSERT INTO bans (userID, authorID, banID, guildID, reason, date, time) VALUES (${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${message.guildId}', '${reason}', '${Date.now()}', 'Défintif')`
+            let sql = `INSERT INTO bans (userID, authorID, banID, guildID, reason, date, time) VALUES (${user.id}, '${message.user === undefined ? message.author.id : message.user.id}', '${ID}', '${message.guildId}', '${reason}', '${Date.now()}', 'Définitif')`
             db.query(sql, function(err) {
                 if(err) throw err;
             })

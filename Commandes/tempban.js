@@ -21,7 +21,7 @@ module.exports = new Command({
         if(!time) return message.reply("Veuillez un indiquer une durée !")
         if(!parseInt(ms(time))) return message.reply("Le temps indiqué est invalide !")
 
-        let reason = message.user ? args._hoistedOptions.length >= 3 ? args._hoistedOptions[2].value : undefined : args.slice(2).join(" ")
+        let reason = message.user ? (args._hoistedOptions.length > 2 ? args._hoistedOptions[2].value : undefined) : args.slice(2).join(" ");
         if(!reason) reason = "Aucune raison donnée";
 
         if(message.user === undefined ? (user.id === message.author.id) : (user.id === message.user.id)) return message.reply("Vous ne pouvez pas vous bannir vous-même !")
