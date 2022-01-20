@@ -92,10 +92,16 @@ module.exports = new Event("guildCreate", async (bot, guild) => {
 
         new SlashCommandBuilder()
         .setName("mute")
-        .setDescription("Permet de rendre muet un utilisateur")
+        .setDescription("Permet de rendre temporairement muet un utilisateur")
         .addUserOption(option => option.setName("membre").setDescription("Le membre à rendre muet").setRequired(true))
         .addStringOption(option => option.setName("temps").setDescription("Le temps du muet").setRequired(true))
-        .addStringOption(option => option.setName("raison").setDescription("La raison du muet").setRequired(false))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du muet").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("unmute")
+        .setDescription("Permet de rendre la parole d'un utilisateur")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à qui rendre la parole").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du rendu de parole").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
