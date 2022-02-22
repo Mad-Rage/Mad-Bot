@@ -60,7 +60,10 @@ module.exports = new Event("ready", async bot => {
     .setPlaceholder("Nous attendons votre choix !")
     .addOptions([{label: "Giveaway", description: "Rôle de notification pour les giveaways", emoji: "🎉", value: "giveaway"}, {label: "Annonces", description: "Rôle de notification pour les annonces", emoji: "📢", value: "annonce"}, {label: "Partenariat", description: "Rôle de notification pour les partenariats", emoji: "🤝", value: "partenariat"}]))
 
-    let channel = bot.channels.cache.get("909138826583216140")
+    let channel = bot.channels.cache.get("944931803540627526")
+    try {
+        await channel.bulkDelete(100)
+    } catch (err) {}
 
     let msg = await channel.send({embeds: [Embed], components: [menu]})
 

@@ -74,6 +74,19 @@ class Interaction extends Base {
      * @type {?Readonly<Permissions>}
      */
     this.memberPermissions = data.member?.permissions ? new Permissions(data.member.permissions).freeze() : null;
+
+    /**
+     * The locale of the user who invoked this interaction
+     * @type {string}
+     * @see {@link https://discord.com/developers/docs/dispatch/field-values#predefined-field-values-accepted-locales}
+     */
+    this.locale = data.locale;
+
+    /**
+     * The preferred locale from the guild this interaction was sent in
+     * @type {?string}
+     */
+    this.guildLocale = data.guild_locale ?? null;
   }
 
   /**

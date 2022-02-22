@@ -100,7 +100,11 @@ module.exports = async(bot) => {
         .setName("unmute")
         .setDescription("Permet de rendre la parole d'un utilisateur")
         .addUserOption(option => option.setName("membre").setDescription("Le membre à qui rendre la parole").setRequired(true))
-        .addStringOption(option => option.setName("raison").setDescription("La raison du rendu de parole").setRequired(false))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du rendu de parole").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("ticket")
+        .setDescription("Permet d'envoyer l'embed des tickets")
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
