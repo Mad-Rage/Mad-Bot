@@ -9,7 +9,7 @@
   "author": "Mad Rage",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
+    "@discordjs/builders": "^0.13.0-dev.1645617791.5158332",
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.22.0",
     "discord-canvas-easy": "^2.1.0",

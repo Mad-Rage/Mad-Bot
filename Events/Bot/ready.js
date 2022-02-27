@@ -45,6 +45,34 @@ module.exports = new Event("ready", async bot => {
 
     }, 1000)
 
+    setInterval(async () => {
+
+        db.query(`SELECT * FROM giveaways`, async (err, req) => {
+
+            if(req.length < 1) return;
+
+            for(let i = 0; i < req.length; i++) {
+
+                if(Date.now() >= parseInt(req[i].date) && req[i].finish === "non") {
+
+                    let channel = bot.guilds.cache.get(req[i].guildID).channels.cache.get(req[i].channelID);
+                    if(!channel) return db.query(`DELETE FROM giveaways WHERE giveawayID = '${req[i].giveawayID}'`);
+
+                    db.query(`SELECT * FROM participants WHERE giveawayID = '${req[i].giveawayID}'`, async (err, part) => {
+
+                        if(parseInt(req[i].winners) > parseInt(part.length)) return channel.send(`Il n'y a pas assez de participants dans le concours \`${req[i].giveawayID}\` !`)
+
+                        let number = Math.floor(Math.random() * parseInt(req[i].winners))
+                        let winner = bot.users.cache.get(part[number].userID)
+                        await db.query(`UPDATE giveaways SET finish = 'oui' WHERE giveawayID = '${req[i].giveawayID}'`)
+                        
+                        await channel.send(`Le gagnant est ${winner} !`)
+                    })
+                }
+            }
+        })
+    })
+
     let Embed = new Discord.MessageEmbed()
     .setColor(bot.color)
     .setTitle("Rôles de notifications")

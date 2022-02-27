@@ -1,5 +1,6 @@
 const { REST } = require("@discordjs/rest")
 const { Routes } = require("discord-api-types/v9")
+const Builders = require("@discordjs/builders")
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { token } = require("../config")
 
@@ -104,7 +105,15 @@ module.exports = async(bot) => {
 
         new SlashCommandBuilder()
         .setName("ticket")
-        .setDescription("Permet d'envoyer l'embed des tickets")
+        .setDescription("Permet d'envoyer l'embed des tickets"),
+
+        new SlashCommandBuilder()
+        .setName("start")
+        .setDescription("Permet de créer un concours")
+        .addChannelOption(option => option.setName("salon").setDescription("Le salon du concours").setRequired(true))
+        .addNumberOption(option => option.setName("gagnant").setDescription("Le nombre de gagnant").setRequired(true))
+        .addStringOption(option => option.setName("temps").setDescription("Le temps du concours").setRequired(true))
+        .addStringOption(option => option.setName("prix").setDescription("Le prix du concours").setRequired(true))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

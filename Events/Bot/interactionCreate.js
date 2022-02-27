@@ -4,6 +4,8 @@ const Event = require("../../Structure/Event");
 
 module.exports = new Event("interactionCreate", async (bot, interaction) => {
 
+    const db = bot.db;
+
     if(interaction.isCommand()) {
 
         const command = bot.commands.get(interaction.commandName)
@@ -93,6 +95,30 @@ module.exports = new Event("interactionCreate", async (bot, interaction) => {
             let user = interaction.guild.members.cache.find(m => m.user.username === interaction.message.embeds[0].description.split(" ")[0].split("#")[0] && m.user.discriminator === interaction.message.embeds[0].description.split(" ")[0].split("#")[1]).user;
             try {await user.send(`Votre ticket a été supprimé par ${interaction.user.tag}`)} catch (err) {}
             await interaction.channel.delete()
+        }
+
+        if(interaction.customId.startsWith("giveaway_")) {
+
+            let ID = interaction.customId.split("_")[1];
+
+            db.query(`SELECT * FROM participants WHERE ID = '${interaction.user.id} ${ID}'`, async (err, req) => {
+
+                if(req.length < 1) {
+
+                    let sql = `INSERT INTO participants (ID, giveawayID, userID) VALUES ('${interaction.user.id} ${ID}', '${ID}', '${interaction.user.id}')`
+                    db.query(sql, function(err) {
+                        if(err) throw err;
+                    })
+
+                    await interaction.reply({content: `Vous participez avec succès au concours \`${ID}\` !`, ephemeral: true})
+
+                } else {
+
+                    db.query(`DELETE FROM participants WHERE ID = '${interaction.user.id} ${ID}'`)
+
+                    await interaction.reply({content: `Vous retirez votre participation avec succès au concours \`${ID}\` !`, ephemeral: true})
+                }
+            })
         }
     }
 })
