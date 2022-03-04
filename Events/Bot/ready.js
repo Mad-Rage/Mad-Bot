@@ -62,11 +62,17 @@ module.exports = new Event("ready", async bot => {
 
                         if(parseInt(req[i].winners) > parseInt(part.length)) return channel.send(`Il n'y a pas assez de participants dans le concours \`${req[i].giveawayID}\` !`)
 
-                        let number = Math.floor(Math.random() * parseInt(req[i].winners))
-                        let winner = bot.users.cache.get(part[number].userID)
+                        let winners = [];
+
+                        for(let i2 = 0; i2 < parseInt(req[i].winners); i2) {
+
+                            let number = Math.floor(Math.random() * parseInt(req[i].winners));
+                            let winner = bot.users.cache.get(part[number].userID)
+                            winners.push(winner)
+                        }
                         await db.query(`UPDATE giveaways SET finish = 'oui' WHERE giveawayID = '${req[i].giveawayID}'`)
                         
-                        await channel.send(`Le gagnant est ${winner} !`)
+                        await channel.send(`Le(s) gagnant(s) est/sont ${winners.join(" ")} !`)
                     })
                 }
             }
