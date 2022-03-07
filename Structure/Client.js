@@ -22,7 +22,9 @@ class Client extends Discord.Client {
         this.color = "#2f3136";
         this.function = {
             createID: require("../Fonctions/createID"),
-            createCaptcha: require("../Fonctions/createCaptcha")
+            createCaptcha: require("../Fonctions/createCaptcha"),
+            searchLinks: require("../Fonctions/searchLinks"),
+            searchMentions: require("../Fonctions/searchMentions")
         }
     }
 

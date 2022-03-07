@@ -27,6 +27,9 @@ module.exports = new Event("messageCreate", async (bot, message) => {
 
         let commandFile = bot.alias.get(command.slice(prefix.length))
 
+        await bot.function.searchLinks(message)
+        await bot.function.searchMentions(message)
+
         db.query(`SELECT * FROM user WHERE userID = ${message.author.id}`, async (err, req) => {
 
             if(req.length < 1) {
