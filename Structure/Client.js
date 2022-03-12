@@ -24,7 +24,8 @@ class Client extends Discord.Client {
             createID: require("../Fonctions/createID"),
             createCaptcha: require("../Fonctions/createCaptcha"),
             searchLinks: require("../Fonctions/searchLinks"),
-            searchMentions: require("../Fonctions/searchMentions")
+            searchMentions: require("../Fonctions/searchMentions"),
+            searchSpam: require("../Fonctions/searchSpam")
         }
     }
 

@@ -29,6 +29,7 @@ module.exports = new Event("messageCreate", async (bot, message) => {
 
         await bot.function.searchLinks(message)
         await bot.function.searchMentions(message)
+        await bot.function.searchSpam(message)
 
         db.query(`SELECT * FROM user WHERE userID = ${message.author.id}`, async (err, req) => {
 
