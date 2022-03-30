@@ -113,7 +113,19 @@ module.exports = async(bot) => {
         .addChannelOption(option => option.setName("salon").setDescription("Le salon du concours").setRequired(true))
         .addNumberOption(option => option.setName("gagnant").setDescription("Le nombre de gagnant").setRequired(true))
         .addStringOption(option => option.setName("temps").setDescription("Le temps du concours").setRequired(true))
-        .addStringOption(option => option.setName("prix").setDescription("Le prix du concours").setRequired(true))
+        .addStringOption(option => option.setName("prix").setDescription("Le prix du concours").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("lock")
+        .setDescription("Permet de locker un salon")
+        .addChannelOption(option => option.setName("salon").setDescription("Le salon à locker").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du lock").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("unlock")
+        .setDescription("Permet de unlocker un salon")
+        .addChannelOption(option => option.setName("salon").setDescription("Le salon à unlocker").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du unlock").setRequired(false))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
