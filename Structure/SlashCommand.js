@@ -125,7 +125,19 @@ module.exports = async(bot) => {
         .setName("unlock")
         .setDescription("Permet de unlocker un salon")
         .addChannelOption(option => option.setName("salon").setDescription("Le salon à unlocker").setRequired(true))
-        .addStringOption(option => option.setName("raison").setDescription("La raison du unlock").setRequired(false))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du unlock").setRequired(false)),
+
+        new SlashCommandBuilder()
+        .setName("blacklist")
+        .setDescription("Permet d'ajouter ou de retirer un utilisateur de la blacklist")
+        .addStringOption(option => option.setName("choix").setDescription("Le choix de la blacklist").setRequired(true).addChoices({name: "add", value: "add"}, {name: "remove", value: "remove"}))
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à blacklist").setRequired(true))
+        .addStringOption(option => option.setName("raison").setDescription("La raison du blacklist").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("scan")
+        .setDescription("Permet de savoir si un membre est blacklist")
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à observer").setRequired(true))
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)
