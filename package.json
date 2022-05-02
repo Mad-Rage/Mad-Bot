@@ -9,6 +9,7 @@
   "author": "Mad Rage",
   "license": "ISC",
   "dependencies": {
+    "@androz2091/discord-invites-tracker": "^1.1.0",
     "@discordjs/builders": "^0.13.0-dev.1645617791.5158332",
     "@discordjs/rest": "^0.1.0-canary.0",
     "canvas": "^2.9.0",
