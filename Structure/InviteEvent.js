@@ -15,7 +15,7 @@ function RunFunction(bot, ...eventArgs) {}
  * @template {keyof Invite.InviteEvents} K
 */
 
-class Event {
+class InviteEvent {
 
     /**
      * @param {K} event 
@@ -29,4 +29,4 @@ class Event {
     }
 }
 
-module.exports = Event;
+module.exports = InviteEvent;
