@@ -20,6 +20,7 @@ class Client extends Discord.Client {
         this.commands = new Discord.Collection()
         this.cooldown = new Discord.Collection()
         this.alias = new Discord.Collection()
+        this.snipe = new Map()
         this.db = Database;
         this.color = "#2f3136";
         this.tracker = InviteTracker.init(this, {

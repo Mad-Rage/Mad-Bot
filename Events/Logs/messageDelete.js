@@ -3,6 +3,9 @@ const Event = require("../../Structure/Event")
 
 module.exports = new Event("messageDelete", async (bot, message) => {
 
+    if(bot.snipe.get(message.channel.id)) await bot.snipe.delete(message.channel.id) && await bot.snipe.set(message.channel.id, message)
+    else await bot.snipe.set(message.channel.id, message);
+
     if(message.author.bot) return;
 
     const AuditsLogs = await message.guild.fetchAuditLogs({
