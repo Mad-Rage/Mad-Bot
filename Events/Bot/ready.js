@@ -1,12 +1,14 @@
 const Discord = require("discord.js")
 const Event = require("../../Structure/Event");
 const SlashCommand = require("../../Structure/SlashCommand")
+const ContextMenu = require("../../Structure/ContextMenu")
 
 module.exports = new Event("ready", async bot => {
 
     const db = bot.db;
 
     await SlashCommand(bot);
+    // await ContextMenu(bot);
 
     bot.user.setStatus("online")
 

@@ -137,7 +137,11 @@ module.exports = async(bot) => {
         new SlashCommandBuilder()
         .setName("scan")
         .setDescription("Permet de savoir si un membre est blacklist")
-        .addUserOption(option => option.setName("membre").setDescription("Le membre à observer").setRequired(true))
+        .addUserOption(option => option.setName("membre").setDescription("Le membre à observer").setRequired(true)),
+
+        new SlashCommandBuilder()
+        .setName("candidature")
+        .setDescription("Permet de faire une candidature de staff")
     ]
       
     const rest = new REST({ version: "9" }).setToken(token)

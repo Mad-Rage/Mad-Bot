@@ -39,6 +39,13 @@ module.exports = new Event("interactionCreate", async (bot, interaction) => {
         command.run(bot, interaction, interaction.options, bot.db)
     }
 
+    if(interaction.isUserContextMenu()) {
+
+        const command = bot.commands.get(interaction.commandName)
+
+        command.run(bot, interaction, interaction.options, bot.db)
+    }
+
     if(interaction.isButton()) {
 
         if(interaction.customId === "ticket") {
